@@ -63,8 +63,9 @@ npm install
 
 # 3. Inicia a aplicação
 npm run dev
+```
 
-
-Perfil,Email,Senha,Acesso
-Gerente,gerente@empresa.com,654321,Completo (acesso a Relatórios e Cadastro de Funcionários)
-Funcionário,funcionario@empresa.com,123456,Operacional (acesso limitado)
+| Perfil | Email | Senha | Acesso |
+| :--- | :--- | :--- | :--- |
+| Gerente | gerente@empresa.com| 654321 | Completo |(acesso a Relatórios e Cadastro de Funcionários)
+| Funcionário| funcionario@empresa.com| 123456| Operacional | (acesso limitado)
