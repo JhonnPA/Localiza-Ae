@@ -165,7 +165,7 @@ app.post('/api/reservations', checkAuth, async (req, res) => {
   } catch (err) { console.error('Erro ao criar reserva:', err); res.status(500).json({ message: 'Erro de servidor' }); }
 });
 
-// Rota 9: ATUALIZAR STATUS DA RESERVA (PRIVADA)
+// Rota 9: ATUALIZAR STATUS DA RESERVA
 app.patch('/api/reservations/:id/status', checkAuth, async (req, res) => { 
   const { id } = req.params;
   const { status } = req.body; 
@@ -182,7 +182,7 @@ app.patch('/api/reservations/:id/status', checkAuth, async (req, res) => {
   } catch (err) { console.error('Erro ao atualizar status da reserva:', err); res.status(500).json({ message: 'Erro de servidor' }); }
 });
 
-// Rota 10: CRIAR NOVO CLIENTE (PRIVADA)
+// Rota 10: CRIAR NOVO CLIENTE
 app.post('/api/clients', checkAuth, async (req, res) => { 
     const { id, name, cpf, phone, email } = req.body;
     if (!id || !name || !cpf || !phone || !email) { return res.status(400).json({ message: 'Todos os campos são obrigatórios.' }); }

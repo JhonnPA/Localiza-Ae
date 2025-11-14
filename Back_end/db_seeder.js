@@ -48,6 +48,83 @@ async function seedDatabase() {
             ON CONFLICT (email) DO UPDATE SET role = EXCLUDED.role, password_plain = EXCLUDED.password_plain;
         `;
         await pool.query(userSQL);
+        
+        const clientsSQL = `
+            INSERT INTO clients (id, name, cpf, phone, email, active) 
+            VALUES
+            ('c1', 'João Silva Santos', '123.456.789-01', '(11) 99999-1234', 'joao@empresa.com', true),
+            ('c2', 'Maria Oliveira Costa', '987.654.321-02', '(11) 98888-5678', 'maria@empresa.com', true),
+            ('c3', 'Ana Carolina Souza', '321.654.987-04', '(11) 96666-3456', 'ana@empresa.com', false),
+            ('c4', 'Marcos Rocha Silva', '444.555.666-77', '(21) 97777-1111', 'marcos.rocha@corp.com', true),
+            ('c5', 'Fernanda Lima Costa', '555.444.333-22', '(11) 95555-2222', 'fernanda.lima@corp.com', true),
+            ('c6', 'Ricardo Alves Moura', '666.777.888-99', '(31) 94444-3333', 'ricardo.alves@corp.com', false),
+            ('c7', 'Sofia Nunes Pereira', '777.888.999-00', '(41) 93333-4444', 'sofia.nunes@corp.com', true),
+            ('c8', 'Miguel Costa Oliveira', '888.777.666-55', '(51) 92222-5555', 'miguel.costa@corp.com', true),
+            ('c9', 'Helena Sousa Mendes', '999.000.111-22', '(61) 91111-6666', 'helena.mendes@corp.com', true),
+            ('c10', 'Alice Rocha', '100.100.100-10', '(11) 91010-1010', 'alice@ex.com', true),
+            ('c11', 'Bruno Santos', '111.111.111-11', '(11) 91111-1111', 'bruno@ex.com', true),
+            ('c12', 'Carla Mendes', '122.222.222-22', '(21) 91212-1212', 'carla@ex.com', true),
+            ('c13', 'Daniel Costa', '133.333.333-33', '(21) 91313-1313', 'daniel@ex.com', true),
+            ('c14', 'Erica Alves', '144.444.444-44', '(31) 91414-1414', 'erica@ex.com', false),
+            ('c15', 'Fernando Lima', '155.555.555-55', '(31) 91515-1515', 'fernando@ex.com', true),
+            ('c16', 'Gabriela Souza', '166.666.666-66', '(41) 91616-1616', 'gabriela@ex.com', true),
+            ('c17', 'Hugo Oliveira', '177.777.777-77', '(41) 91717-1717', 'hugo@ex.com', true),
+            ('c18', 'Ingrid Pereira', '188.888.888-88', '(51) 91818-1818', 'ingrid@ex.com', false),
+            ('c19', 'João Ribeiro', '199.999.999-99', '(51) 91919-1919', 'joao@ex.com', true),
+            ('c20', 'Karen Gomes', '200.200.200-20', '(61) 92020-2020', 'karen@ex.com', true),
+            ('c21', 'Lucas Martins', '211.211.211-21', '(61) 92121-2121', 'lucas@ex.com', true),
+            ('c22', 'Mariana Nunes', '222.222.222-22', '(71) 92222-2222', 'mariana@ex.com', true),
+            ('c23', 'Nelson Rocha', '233.333.333-33', '(71) 92323-2323', 'nelson@ex.com', false),
+            ('c24', 'Olivia Santos', '244.444.444-44', '(81) 92424-2424', 'olivia@ex.com', true),
+            ('c25', 'Paulo Torres', '255.555.555-55', '(81) 92525-2525', 'paulo@ex.com', true),
+            ('c26', 'Rita Vieira', '266.666.666-66', '(91) 92626-2626', 'rita@ex.com', true),
+            ('c27', 'Samuel Ferreira', '277.777.777-77', '(91) 92727-2727', 'samuel@ex.com', true),
+            ('c28', 'Tânia Barbosa', '288.888.888-88', '(11) 92828-2828', 'tania@ex.com', false),
+            ('c29', 'Victor Almeida', '299.999.999-99', '(11) 92929-2929', 'victor@ex.com', true)
+            ON CONFLICT (id) DO NOTHING;
+        `;
+        await pool.query(clientsSQL);
+
+        const reservationsSQL = `
+            INSERT INTO reservations (client_id, category_id, pickup_date, return_date, pickup_time, return_time, pickup_location, return_location, status) 
+            VALUES
+            ('c4', 'suv', '2025-11-14', '2025-11-28', '10:00', '16:00', 'Matriz', 'Matriz', 'Ativa'),
+            ('c5', 'int', '2025-11-13', '2025-11-15', '09:00', '09:00', 'Aeroporto', 'Matriz', 'Ativa'),
+            ('c4', 'exe', '2025-10-10', '2025-10-15', '14:00', '14:00', 'Matriz', 'Centro', 'Concluída'),
+            ('c6', 'eco', '2025-11-25', '2025-11-26', '11:00', '11:00', 'Centro', 'Centro', 'Cancelada'),
+            ('c7', 'suv', '2025-12-05', '2025-12-15', '12:00', '12:00', 'Matriz', 'Matriz', 'Ativa'),
+            ('c8', 'eco', '2025-01-20', '2025-01-22', '10:00', '10:00', 'Centro', 'Centro', 'Concluída'),
+            ('c9', 'eco', '2025-11-20', '2025-11-22', '15:00', '15:00', 'Aeroporto', 'Aeroporto', 'Ativa'),
+            ('c7', 'exe', '2025-11-28', '2025-11-30', '08:00', '08:00', 'Matriz', 'Centro', 'Cancelada'),
+            
+            ('c10', 'eco', '2025-10-01', '2025-10-03', '10:00', '16:00', 'Matriz', 'Matriz', 'Concluída'),
+            ('c11', 'int', '2025-10-05', '2025-10-10', '09:00', '09:00', 'Centro', 'Centro', 'Concluída'),
+            ('c12', 'exe', '2025-10-12', '2025-10-15', '14:00', '14:00', 'Aeroporto', 'Aeroporto', 'Concluída'),
+            ('c13', 'suv', '2025-10-18', '2025-10-25', '11:00', '11:00', 'Matriz', 'Centro', 'Concluída'),
+            ('c14', 'eco', '2025-10-28', '2025-10-29', '15:00', '15:00', 'Centro', 'Centro', 'Cancelada'),
+            ('c15', 'int', '2025-10-30', '2025-11-03', '13:00', '13:00', 'Aeroporto', 'Matriz', 'Concluída'),
+            ('c16', 'exe', '2025-10-15', '2025-10-17', '08:00', '08:00', 'Matriz', 'Matriz', 'Concluída'),
+            ('c17', 'suv', '2025-10-20', '2025-10-22', '16:00', '16:00', 'Centro', 'Aeroporto', 'Concluída'),
+            
+            ('c19', 'exe', '2025-11-06', '2025-11-12', '10:00', '10:00', 'Centro', 'Centro', 'Concluída'),
+            ('c20', 'eco', '2025-11-13', '2025-11-15', '09:00', '09:00', 'Matriz', 'Matriz', 'Ativa'),
+            ('c21', 'int', '2025-11-15', '2025-11-20', '11:00', '11:00', 'Aeroporto', 'Aeroporto', 'Ativa'),
+            ('c22', 'exe', '2025-11-18', '2025-11-28', '14:00', '14:00', 'Centro', 'Matriz', 'Ativa'),
+            ('c24', 'suv', '2025-11-20', '2025-11-22', '12:00', '12:00', 'Matriz', 'Centro', 'Concluída'),
+            ('c25', 'eco', '2025-11-25', '2025-11-29', '09:00', '09:00', 'Aeroporto', 'Aeroporto', 'Ativa'),
+            ('c28', 'int', '2025-11-26', '2025-11-29', '13:00', '13:00', 'Centro', 'Matriz', 'Cancelada'),
+            ('c29', 'exe', '2025-11-01', '2025-11-02', '16:00', '16:00', 'Matriz', 'Aeroporto', 'Concluída'),
+            ('c17', 'eco', '2025-11-09', '2025-11-11', '10:00', '10:00', 'Matriz', 'Matriz', 'Concluída'),
+            ('c18', 'suv', '2025-11-10', '2025-11-14', '08:00', '08:00', 'Centro', 'Centro', 'Cancelada'),
+            
+            ('c26', 'int', '2025-12-01', '2025-12-07', '09:00', '09:00', 'Centro', 'Centro', 'Ativa'),
+            ('c27', 'exe', '2025-12-05', '2025-12-10', '10:00', '10:00', 'Matriz', 'Matriz', 'Ativa'),
+            ('c29', 'suv', '2025-12-10', '2025-12-15', '14:00', '14:00', 'Aeroporto', 'Aeroporto', 'Ativa'),
+            ('c10', 'int', '2025-12-18', '2025-12-20', '15:00', '15:00', 'Matriz', 'Centro', 'Ativa'),
+            ('c11', 'eco', '2025-12-22', '2025-12-26', '12:00', '12:00', 'Centro', 'Aeroporto', 'Ativa'),
+            ('c12', 'suv', '2025-12-28', '2025-12-30', '08:00', '08:00', 'Aeroporto', 'Matriz', 'Ativa');
+        `;
+        await pool.query(reservationsSQL);
 
         console.log('--- Dados iniciais e estrutura verificados com sucesso! ---');
 
