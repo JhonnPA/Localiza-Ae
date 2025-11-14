@@ -54,3 +54,17 @@ npm install
 
 # 3. Inicia o servidor (Executa o DB Setup)
 node server.js
+
+# 1. Navega para o frontend
+cd Front_end
+
+# 2. Instala as dependências
+npm install
+
+# 3. Inicia a aplicação
+npm run dev
+
+
+Perfil,Email,Senha,Acesso
+Gerente,gerente@empresa.com,654321,Completo (acesso a Relatórios e Cadastro de Funcionários)
+Funcionário,funcionario@empresa.com,123456,Operacional (acesso limitado)
