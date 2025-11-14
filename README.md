@@ -1,5 +1,5 @@
 # Localiza-Ae
-# 🚗 Localiza-ae Pro: Sistema de Aluguel de Carros para Funcionários
+# 🚗 Localiza-ae: Sistema de Aluguel de Carros para Funcionários
 
 Sistema completo de gestão de aluguel de carros desenvolvido em React (Frontend) e Node.js com PostgreSQL (Backend). Inclui autenticação, controle de acesso e cálculo de estoque em tempo real.
 
